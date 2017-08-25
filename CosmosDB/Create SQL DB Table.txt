@@ -1,0 +1,39 @@
+/*    ==Scripting Parameters==
+
+    Source Database Engine Edition : Microsoft Azure SQL Database Edition
+    Source Database Engine Type : Microsoft Azure SQL Database
+
+    Target Database Engine Edition : Microsoft Azure SQL Database Edition
+    Target Database Engine Type : Microsoft Azure SQL Database
+*/
+
+/****** Object:  Table [dbo].[videos]    Script Date: 8/25/2017 12:23:39 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[videos](
+	[Id] [uniqueidentifier] NOT NULL,
+	[url] [nchar](10) NULL,
+	[title] [nchar](10) NULL,
+	[tags] [nchar](10) NULL,
+	[previewImage] [nchar](10) NULL,
+	[type] [nchar](10) NULL,
+	[totalviewCount] [int] NULL,
+	[rating] [int] NULL,
+	[ratingCount] [int] NULL,
+	[authors] [nchar](10) NULL,
+	[primaryAudience] [nchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF)
+)
+GO
+
+ALTER TABLE [dbo].[videos] ADD  CONSTRAINT [DF_videos_Id]  DEFAULT (newid()) FOR [Id]
+GO
+
+
