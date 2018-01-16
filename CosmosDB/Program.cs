@@ -9,7 +9,6 @@ using System.Data.SqlClient;
 using System.IO;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents;
-using Newtonsoft.Json;
 using System.Threading;
 using System.Configuration;
 using System.Diagnostics;
@@ -70,7 +69,7 @@ namespace CosmosDB
                 {
                     _authors[i] = _authors[i].Replace("\"", "").Trim();
                 }
-                video v = new video
+                Video v = new Video
                 {
                     Id = reader["id"].ToString(),
                     url = reader["url"].ToString(),
@@ -102,7 +101,7 @@ namespace CosmosDB
             stopWatch.Stop();
             Console.WriteLine("{0} records processed. {1} collesssion happened.  in {2} hr {3} Min {4} Sec", ctr, collession, stopWatch.Elapsed.Hours, stopWatch.Elapsed.Minutes, stopWatch.Elapsed.Seconds);
         }
-        private static async Task<ResourceResponse<Document>> UpdateDocumentDB(video v, string databaseid, string collectionid)
+        private static async Task<ResourceResponse<Document>> UpdateDocumentDB(Video v, string databaseid, string collectionid)
         {
             DocumentCollection myCollection = new DocumentCollection();
             myCollection.Id = collectionid;
@@ -121,48 +120,5 @@ namespace CosmosDB
 
     }
 
-    public class video
-    {
-        [JsonProperty("id")]
-        public string Id;
-
-        [JsonProperty("url")]
-        public string url;
-
-        //[JsonConverter(typeof(IsoDateTimeConverter))]
-        //[JsonProperty("title")]
-        //public DateTime title;
-
-        [JsonProperty("title")]
-        public string title;
-
-        [JsonProperty("tags")]
-        public string[] tags;
-
-        [JsonProperty("previewImage")]
-        public string previewImage;
-
-        [JsonProperty("type")]
-        public string type;
-
-        [JsonProperty("totalviewCount")]
-        public int totalviewCount;
-
-        [JsonProperty("rating")]
-        public double rating;
-
-        [JsonProperty("ratingCount")]
-        public int ratingCount;
-
-        [JsonProperty("totalViewCount")]
-        public int totalViewCount;
-
-        [JsonProperty("authors")]
-        public string[] authors;
-
-        [JsonProperty("primaryAudience")]
-        public string primaryAudience;
-
-
-    }
+    
 }
